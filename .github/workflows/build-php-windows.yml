@@ -11,10 +11,7 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - "8.1"
           - "8.2"
-          - "8.3"
-          - "8.4"
         runner:
           - "windows-latest"
         combination:
@@ -95,7 +92,7 @@ jobs:
           ${{ steps.process-env.outputs.CMD }} doctor --auto-fix
           ${{ steps.process-env.outputs.CMD }} install-pkg upx
           
-          ${{ steps.process-env.outputs.CMD }} build --build-cli --build-micro "${{ steps.process-env.outputs.EXTENSIONS }}" --debug --with-upx-pack
+          ${{ steps.process-env.outputs.CMD }} build --build-cli --build-micro "${{ steps.process-env.outputs.EXTENSIONS }}" --with-libs="freetype" --debug --with-upx-pack
 
           $PHPVER = ${{ steps.process-env.outputs.CMD }} dev:php-ver
           New-Item -ItemType Directory -Force -Path dist
